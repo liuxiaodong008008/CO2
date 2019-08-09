@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 void method(Shape,ctor)(struct Shape* self,va_list* val) {
-    assgin_class(Shape,self);
+    assign_class(Shape, self);
     invoke_super_ctor_if_exists(Shape,self,val);
 }
 

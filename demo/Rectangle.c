@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 void method(Rectangle,ctor)(struct Rectangle* self,va_list* val) {
-    assgin_class(Rectangle, self);
+    assign_class(Rectangle, self);
     invoke_super_ctor_if_exists(Rectangle, self, val);
 
     self->width = va_arg(*val,int);

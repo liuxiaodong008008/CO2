@@ -5,6 +5,10 @@
 #ifndef CO2_UTILS_H
 #define CO2_UTILS_H
 
+//#ifdef _MSC_VER
+//#define __VA_OPT__(x) x
+//#endif
+
 
 #define class_of(Type) (Get##Type##Class())
 
@@ -31,7 +35,7 @@
 #define object_class(self) (((struct Object*)self)->class)
 #define object_super(self) (object_class(self)->super_class)
 
-#define assgin_class(Type,self) \
+#define assign_class(Type,self) \
     self->class = class_of(Type)
 
 #define invoke_super_ctor_if_exists(Type,self,val) \
@@ -45,7 +49,7 @@
     }
 
 
-#define invoke(self,func,...) (self->class->func(self __VA_OPT__(,) __VA_ARGS__))
+#define invoke(self,func,...) (self->class->func(self ,__VA_ARGS__))
 
 struct NameFuncPair {
     char * name;

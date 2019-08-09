@@ -12,7 +12,7 @@ int main() {
         new(Shape),
         new(Circle,8),
         new(Rectangle,10,5),
-        new(Square,3),
+        new(Square,3)
     };
 
     for (int i = 0; i < 4; ++i) {

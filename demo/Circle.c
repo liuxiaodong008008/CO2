@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 void method(Circle,ctor)(struct Circle* self,va_list* val) {
-    assgin_class(Circle, self);
+    assign_class(Circle, self);
     invoke_super_ctor_if_exists(Circle, self, val);
 
     self->radius = va_arg(*val,int);

@@ -5,7 +5,7 @@
 #include "../include/Object.h"
 
 void method(Object,ctor) (struct Object* self, va_list* val) {
-    assgin_class(Object,self);
+    assign_class(Object, self);
 }
 
 void method(Object,dtor) (struct Object* self) {}

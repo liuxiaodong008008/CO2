@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 void method(Square,ctor)(struct Square* self,va_list* val) {
-    assgin_class(Square, self);
+    assign_class(Square, self);
     invoke_super_ctor_if_exists(Square, self, val);
 
     int a = va_arg(*val,int);
