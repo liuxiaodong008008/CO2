@@ -11,8 +11,8 @@ void method(Square,ctor)(struct Square* self,va_list* val) {
     invoke_super_ctor_if_exists(Square, self, val);
 
     int a = va_arg(*val,int);
-    self->super.width = a;
-    self->super.height = a;
+    self->head.super.width = a;
+    self->head.super.height = a;
 }
 
 void method(Square,dtor)(struct Square* self) {
@@ -20,7 +20,7 @@ void method(Square,dtor)(struct Square* self) {
 }
 
 void method(Square,name)(struct Square* self) {
-    printf("Square(a=%d)\n",self->super.width);
+    printf("Square(a=%d)\n",self->head.super.width);
 }
 
 
@@ -32,7 +32,7 @@ struct SquareClass * GetSquareClass() {
             method_init_with_func(Square, ctor),
             method_init_with_func(Square, dtor),
             method_init_with_func(Square, name),
-//            method_init_with_null(Square, name),
+            method_init_with_null(Square, area),
     };
     static int i=1;
     if(i) {

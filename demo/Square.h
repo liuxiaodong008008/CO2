@@ -9,8 +9,10 @@
 #include "Rectangle.h"
 
 struct Square {
-    struct SquareClass * class;
-    struct Rectangle super;
+    union {
+        struct SquareClass * class;
+        struct Rectangle super;
+    } head;
 };
 
 struct SquareClass {
@@ -20,6 +22,7 @@ struct SquareClass {
     method_declare(void,ctor)(struct Square* self, va_list* val);
     method_declare(void,dtor)(struct Square* self);
     method_declare(void,name)(struct Square* self);
+    method_declare(float,area)(struct Square* self);
 };
 
 struct SquareClass * GetSquareClass();

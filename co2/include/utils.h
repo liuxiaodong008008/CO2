@@ -32,24 +32,24 @@
 #define get_ctor(_class) ((struct ObjectClass*)_class)->ctor
 #define get_dtor(_class) ((struct ObjectClass*)_class)->dtor
 
-#define object_class(self) (((struct Object*)self)->class)
-#define object_super(self) (object_class(self)->super_class)
+#define object_class(self) self->head.class
+#define object_super(self) object_class(self)->super_class
 
 #define assign_class(Type,self) \
-    self->class = class_of(Type)
+    object_class(self) = class_of(Type)
 
 #define invoke_super_ctor_if_exists(Type,self,val) \
     if(object_super(self) && object_super(self)->ctor) { \
-        object_super(self)->ctor(&self->super,val); \
+        object_super(self)->ctor(self,val); \
     }
 
 #define invoke_super_dtor_if_exists(Type,self) \
     if(object_super(self) && object_super(self)->dtor) { \
-        object_super(self)->dtor(&self->super); \
+        object_super(self)->dtor(self); \
     }
 
 
-#define invoke(self,func,...) (self->class->func(self ,__VA_ARGS__))
+#define invoke(self,func,...) (object_class(self)->func(self ,__VA_ARGS__))
 
 struct NameFuncPair {
     char * name;

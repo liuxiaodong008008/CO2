@@ -25,6 +25,10 @@ int main() {
     // Rectangle(w=10,h=5)
     // Square(a=1)
 
+    for (int i = 1; i < 4; ++i) {
+        printf("%f\n",invoke(sps[i],area));
+    }
+
 
     delete(sps[0]);
     delete(sps[1]);

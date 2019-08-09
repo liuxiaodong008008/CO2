@@ -19,6 +19,10 @@ void method(Shape,name)(struct Shape* self) {
     printf("Shape()\n");
 }
 
+//float method(Shape,area)(struct Shape* self) {
+//    return -1.0f;
+//}
+
 
 struct ShapeClass * GetShapeClass() {
     static struct ShapeClass shape_class = {
@@ -27,7 +31,8 @@ struct ShapeClass * GetShapeClass() {
             0,
             method_init_with_func(Shape, ctor),
             method_init_with_func(Shape, dtor),
-            method_init_with_func(Shape, name)
+            method_init_with_func(Shape, name),
+            method_init_with_null(Shape, area)
     };
     static int i=1;
     if(i) {

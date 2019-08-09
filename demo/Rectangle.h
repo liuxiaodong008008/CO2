@@ -9,8 +9,10 @@
 #include "Shape.h"
 
 struct Rectangle {
-    struct RectangleClass * class;
-    struct Shape super;
+    union {
+        struct RectangleClass * class;
+        struct Shape super;
+    } head;
     int width;
     int height;
 };
@@ -22,6 +24,7 @@ struct RectangleClass {
     method_declare(void,ctor)(struct Rectangle* self, va_list* val);
     method_declare(void,dtor)(struct Rectangle* self);
     method_declare(void,name)(struct Rectangle* self);
+    method_declare(float,area)(struct Rectangle* self);
 };
 
 struct RectangleClass * GetRectangleClass();

@@ -21,6 +21,10 @@ void method(Circle,name)(struct Circle* self) {
     printf("Circle(r=%d)\n",self->radius);
 }
 
+float method(Circle,area)(struct Circle* self) {
+    return 3.1415926f * self->radius * self->radius;
+}
+
 
 struct CircleClass * GetCircleClass() {
     static struct CircleClass circle_class = {
@@ -30,7 +34,7 @@ struct CircleClass * GetCircleClass() {
             method_init_with_func(Circle, ctor),
             method_init_with_func(Circle, dtor),
             method_init_with_func(Circle, name),
-//            method_init_with_null(Circle, name),
+            method_init_with_func(Circle, area),
     };
     static int i=1;
     if(i) {

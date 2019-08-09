@@ -9,8 +9,11 @@
 #include "Shape.h"
 
 struct Circle {
-    struct CircleClass * class;
-    struct Shape super;
+    union {
+        struct CircleClass * class;
+        struct Shape super;
+    } head;
+
     int radius;
 };
 
@@ -21,6 +24,7 @@ struct CircleClass {
     method_declare(void,ctor)(struct Circle* self, va_list* val);
     method_declare(void,dtor)(struct Circle* self);
     method_declare(void,name)(struct Circle* self);
+    method_declare(float,area)(struct Circle* self);
 };
 
 struct CircleClass * GetCircleClass();

@@ -11,7 +11,9 @@
 
 
 struct Object {
-    struct ObjectClass * class;
+    union {
+        struct ObjectClass * class;
+    } head;
 };
 
 struct ObjectClass {

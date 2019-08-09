@@ -26,8 +26,8 @@ void* _new(void* _class, ...) {
 }
 
 void _delete(void* self) {
-    if(((struct Object*)self)->class->dtor) {
-        ((struct Object*)self)->class->dtor(self);
+    if(((struct Object*)self)->head.class->dtor) {
+        ((struct Object*)self)->head.class->dtor(self);
     }
     free(self);
 }

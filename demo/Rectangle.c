@@ -22,6 +22,9 @@ void method(Rectangle,name)(struct Rectangle* self) {
     printf("Rectangle(w=%d,h=%d)\n",self->width,self->height);
 }
 
+float method(Rectangle,area)(struct Rectangle* self) {
+    return self->width * self->height;
+}
 
 struct RectangleClass * GetRectangleClass() {
     static struct RectangleClass rectangle_class = {
@@ -31,7 +34,7 @@ struct RectangleClass * GetRectangleClass() {
             method_init_with_func(Rectangle, ctor),
             method_init_with_func(Rectangle, dtor),
             method_init_with_func(Rectangle, name),
-//            method_init_with_null(Rectangle, name),
+            method_init_with_func(Rectangle, area)
     };
     static int i=1;
     if(i) {
