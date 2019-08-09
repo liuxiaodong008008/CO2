@@ -9,17 +9,17 @@
 int main() {
 
     struct Shape *sps[4] = {
-            new(Shape),
-            new(Circle,8),
-            new(Rectangle,10,5),
-            new(Square,3),
+        new(Shape),
+        new(Circle,8),
+        new(Rectangle,10,5),
+        new(Square,3),
     };
 
     for (int i = 0; i < 4; ++i) {
         invoke(sps[i],name);
     }
     // print as below:
-    // ---------------
+    // =====================
     // Shape()
     // Circle(r=8)
     // Rectangle(w=10,h=5)
