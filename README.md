@@ -1,3 +1,10 @@
+# CO2
+CO2: C language Object Oriented system.
+
+Support:  Encapsulation, Inheritance, Polymorphism.
+
+Demo:
+```C
 #include <stdio.h>
 #include <stdarg.h>
 #include "co2/include/all.h"
@@ -18,13 +25,6 @@ int main() {
     for (int i = 0; i < 4; ++i) {
         invoke(sps[i],name);
     }
-    // print as below:
-    // =====================
-    // Shape()
-    // Circle(r=8)
-    // Rectangle(w=10,h=5)
-    // Square(a=1)
-
 
     delete(sps[0]);
     delete(sps[1]);
@@ -33,3 +33,13 @@ int main() {
 
     return 0;
 }
+```
+
+print as below:
+
+```
+Shape()
+Circle(r=8)
+Rectangle(w=10,h=5)
+Square(a=1)
+ ```

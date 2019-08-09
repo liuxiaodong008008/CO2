@@ -11,24 +11,25 @@
 
 
 void* _new(void* _class, ...) {
-    void * m = malloc(*(size_t*)_class);
+    void * m = malloc(((struct ObjectClass*)_class)->size);
     assert(m);
 
     va_list val;
-    va_start(val,_class);
-    get_class(Object)->ctor(m, &val);
-    va_end(val);
+
+    if(((struct ObjectClass*)_class)->ctor) {
+        va_start(val,_class);
+        ((struct ObjectClass*)_class)->ctor(m, &val);
+        va_end(val);
+    }
 
     return m;
 }
 
 void _delete(void* self) {
-    ((struct Object*)self)->class->dtor(self);
+    if(((struct Object*)self)->class->dtor) {
+        ((struct Object*)self)->class->dtor(self);
+    }
     free(self);
 }
-
-
-
-
 
 
