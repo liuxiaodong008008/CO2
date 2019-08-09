@@ -5,7 +5,7 @@
 #include "../include/Object.h"
 
 void method(Object,ctor) (struct Object* self, va_list* val) {
-    self->class = get_class(Object);
+    assgin_class(Object,self);
 }
 
 void method(Object,dtor) (struct Object* self) {}
@@ -13,9 +13,10 @@ void method(Object,dtor) (struct Object* self) {}
 struct ObjectClass * GetObjectClass() {
     static struct ObjectClass object_class = {
             sizeof(struct Object),
+            sizeof(struct ObjectClass),
             0,
-            method_initialize(Object,ctor),
-            method_initialize(Object,dtor)
+            method_init_with_func(Object, ctor),
+            method_init_with_func(Object, dtor)
     };
     return & object_class;
 }
