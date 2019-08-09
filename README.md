@@ -34,10 +34,12 @@ int main() {
     return 0;
 }
 ```
+
 print as below:
+
 ```
-    Shape()
-    Circle(r=8)
-    Rectangle(w=10,h=5)
-    Square(a=1)
-    ```
+Shape()
+Circle(r=8)
+Rectangle(w=10,h=5)
+Square(a=1)
+ ```
