@@ -6,12 +6,8 @@ Support:  Encapsulation, Inheritance, Polymorphism.
 Demo:
 ```C
 #include <stdio.h>
-#include <stdarg.h>
 #include "co2/include/all.h"
-#include "demo/Shape.h"
-#include "demo/Rectangle.h"
-#include "demo/Square.h"
-#include "demo/Circle.h"
+#include "demo/demo.h"
 
 int main() {
 
@@ -36,8 +32,7 @@ int main() {
 print as below:
 
 ```
-Shape()
-Circle(r=8)
-Rectangle(w=10,h=5)
-Square(a=1)
+Circle(r=8) - area: 201.1
+Rectangle(w=10,h=5) - area: 50.0
+Square(a=3) - area: 9.0
  ```
