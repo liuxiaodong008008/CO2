@@ -15,21 +15,19 @@ Demo:
 
 int main() {
 
-    struct Shape *sps[4] = {
-        new(Shape),
-        new(Circle,8),
-        new(Rectangle,10,5),
-        new(Square,3),
-    };
+    struct Circle* p1 = new(Circle,8);
+    struct Rectangle* p2 = new(Rectangle,10,5);
+    struct Square* p3 = new(Square,3);
 
-    for (int i = 0; i < 4; ++i) {
-        invoke(sps[i],name);
+    struct Shape *sps[3] = {p1,p2,p3};
+
+    for (int i = 0; i < 3; ++i) {
+        invoke(sps[i],summary);
     }
 
     delete(sps[0]);
     delete(sps[1]);
     delete(sps[2]);
-    delete(sps[3]);
 
     return 0;
 }

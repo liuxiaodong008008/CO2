@@ -1,10 +1,6 @@
 #include <stdio.h>
-#include <stdarg.h>
 #include "co2/include/all.h"
-#include "demo/Shape.h"
-#include "demo/Rectangle.h"
-#include "demo/Square.h"
-#include "demo/Circle.h"
+#include "demo/demo.h"
 
 int main() {
 
