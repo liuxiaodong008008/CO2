@@ -6,19 +6,20 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-void method(Circle,ctor)(struct Circle* self,va_list* val) {
-    assign_class(Circle, self);
+void method(Circle,ctor)(struct Circle* self, struct va_list_ex val) {
+    assign_class_if_null(Circle, self);
     invoke_super_ctor_if_exists(Circle, self, val);
 
-    self->radius = va_arg(*val,int);
+    va_reset(&val);
+    self->radius = va_arg_ex(val,int);
 }
 
 void method(Circle,dtor)(struct Circle* self) {
     invoke_super_dtor_if_exists(Circle, self);
 }
 
-void method(Circle,name)(struct Circle* self) {
-    printf("Circle(r=%d)\n",self->radius);
+void method(Circle,name)(struct Circle* self, char *str) {
+    sprintf(str,"Circle(r=%d)",self->radius);
 }
 
 float method(Circle,area)(struct Circle* self) {
@@ -33,6 +34,7 @@ struct CircleClass * GetCircleClass() {
             0,
             method_init_with_func(Circle, ctor),
             method_init_with_func(Circle, dtor),
+            method_init_with_null(Circle, summary),
             method_init_with_func(Circle, name),
             method_init_with_func(Circle, area),
     };

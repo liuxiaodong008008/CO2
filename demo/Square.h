@@ -19,8 +19,9 @@ struct SquareClass {
     size_t size;
     size_t class_size;
     struct RectangleClass* super_class;
-    method_declare(void,ctor)(struct Square* self, va_list* val);
+    method_declare(void,ctor)(struct Square* self, struct va_list_ex val);
     method_declare(void,dtor)(struct Square* self);
+    method_declare(void,summary)(struct Square* self, char *str);
     method_declare(void,name)(struct Square* self);
     method_declare(float,area)(struct Square* self);
 };

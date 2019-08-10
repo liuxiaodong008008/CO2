@@ -21,9 +21,10 @@ struct RectangleClass {
     size_t size;
     size_t class_size;
     struct ShapeClass* super_class;
-    method_declare(void,ctor)(struct Rectangle* self, va_list* val);
+    method_declare(void,ctor)(struct Rectangle* self, struct va_list_ex val);
     method_declare(void,dtor)(struct Rectangle* self);
-    method_declare(void,name)(struct Rectangle* self);
+    method_declare(void,summary)(struct Rectangle* self);
+    method_declare(void,name)(struct Rectangle* self, char *str);
     method_declare(float,area)(struct Rectangle* self);
 };
 

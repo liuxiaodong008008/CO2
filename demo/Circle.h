@@ -21,9 +21,10 @@ struct CircleClass {
     size_t size;
     size_t class_size;
     struct ShapeClass* super_class;
-    method_declare(void,ctor)(struct Circle* self, va_list* val);
+    method_declare(void,ctor)(struct Circle* self, struct va_list_ex val);
     method_declare(void,dtor)(struct Circle* self);
-    method_declare(void,name)(struct Circle* self);
+    method_declare(void,summary)(struct Circle* self);
+    method_declare(void,name)(struct Circle* self, char *str);
     method_declare(float,area)(struct Circle* self);
 };
 

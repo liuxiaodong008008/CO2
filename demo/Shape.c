@@ -6,8 +6,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-void method(Shape,ctor)(struct Shape* self,va_list* val) {
-    assign_class(Shape, self);
+void method(Shape,ctor)(struct Shape* self,struct va_list_ex val) {
+    assign_class_if_null(Shape, self);
     invoke_super_ctor_if_exists(Shape,self,val);
 }
 
@@ -15,13 +15,15 @@ void method(Shape,dtor)(struct Shape* self) {
     invoke_super_dtor_if_exists(Shape,self);
 }
 
-void method(Shape,name)(struct Shape* self) {
-    printf("Shape()\n");
+void method(Shape,name)(struct Shape* self, char *str) {
+    sprintf(str,"Shape()");
 }
 
-//float method(Shape,area)(struct Shape* self) {
-//    return -1.0f;
-//}
+void method(Shape,summary)(struct Shape* self) {
+    char name[30] = {'\0'};
+    invoke(self,name,name);
+    printf("%s - area: %.1f\n",name,invoke(self,area));
+}
 
 
 struct ShapeClass * GetShapeClass() {
@@ -31,6 +33,7 @@ struct ShapeClass * GetShapeClass() {
             0,
             method_init_with_func(Shape, ctor),
             method_init_with_func(Shape, dtor),
+            method_init_with_func(Shape, summary),
             method_init_with_func(Shape, name),
             method_init_with_null(Shape, area)
     };

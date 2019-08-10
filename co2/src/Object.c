@@ -4,8 +4,8 @@
 
 #include "../include/Object.h"
 
-void method(Object,ctor) (struct Object* self, va_list* val) {
-    assign_class(Object, self);
+void method(Object,ctor) (struct Object* self, struct va_list_ex val) {
+    assign_class_if_null(Object, self);
 }
 
 void method(Object,dtor) (struct Object* self) {}

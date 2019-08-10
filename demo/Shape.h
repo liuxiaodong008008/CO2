@@ -18,9 +18,10 @@ struct ShapeClass {
     size_t size;
     size_t class_size;
     struct ObjectClass* super_class;
-    method_declare(void,ctor)(struct Shape* self, va_list* val);
+    method_declare(void,ctor)(struct Shape* self, struct va_list_ex val);
     method_declare(void,dtor)(struct Shape* self);
-    method_declare(void,name)(struct Shape* self);
+    method_declare(void,summary)(struct Shape* self);
+    method_declare(void,name)(struct Shape* self, char *str);
     method_declare(float,area)(struct Shape* self);
 };
 

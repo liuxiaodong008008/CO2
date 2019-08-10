@@ -20,7 +20,7 @@ struct ObjectClass {
     size_t size;
     size_t class_size;
     struct ObjectClass* super_class;
-    method_declare(void,ctor)(struct Object* self, va_list* val);
+    method_declare(void,ctor)(struct Object* self, struct va_list_ex val);
     method_declare(void,dtor)(struct Object* self);
 };
 

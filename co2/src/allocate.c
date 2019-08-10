@@ -11,14 +11,14 @@
 
 
 void* _new(void* _class, ...) {
-    void * m = malloc(((struct ObjectClass*)_class)->size);
+    void * m = calloc(((struct ObjectClass*)_class)->size,1);
     assert(m);
 
     va_list val;
 
     if(((struct ObjectClass*)_class)->ctor) {
         va_start(val,_class);
-        ((struct ObjectClass*)_class)->ctor(m, &val);
+        ((struct ObjectClass*)_class)->ctor(m, make_va_list_ex(&val));
         va_end(val);
     }
 

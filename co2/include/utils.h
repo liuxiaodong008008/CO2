@@ -5,14 +5,12 @@
 #ifndef CO2_UTILS_H
 #define CO2_UTILS_H
 
-//#ifdef _MSC_VER
-//#define __VA_OPT__(x) x
-//#endif
+#include <stdarg.h>
 
 
 #define class_of(Type) (Get##Type##Class())
 
-#define method(Type,method_name) Type##method_name
+#define method(Type,method_name) Type##_##method_name
 
 #define method_declare(ret,method_name) \
     char * method_name##_name; \
@@ -34,28 +32,40 @@
 
 #define object_class(self) self->head.class
 #define object_super(self) object_class(self)->super_class
+#define class_super(Type) class_of(Type)->super_class
 
-#define assign_class(Type,self) \
-    object_class(self) = class_of(Type)
+#define assign_class_if_null(Type,self) \
+    if(object_class(self)==0) \
+        object_class(self) = class_of(Type)
 
 #define invoke_super_ctor_if_exists(Type,self,val) \
-    if(object_super(self) && object_super(self)->ctor) { \
-        object_super(self)->ctor(self,val); \
+    if(class_super(Type) && class_super(Type)->ctor) { \
+        class_super(Type)->ctor(self,val); \
     }
 
 #define invoke_super_dtor_if_exists(Type,self) \
-    if(object_super(self) && object_super(self)->dtor) { \
-        object_super(self)->dtor(self); \
+    if(class_super(Type) && class_super(Type)->dtor) { \
+        class_super(Type)->dtor(self); \
     }
 
 
-#define invoke(self,func,...) (object_class(self)->func(self ,__VA_ARGS__))
+#define invoke(self,func,...) (object_class(self)->func(self __VA_OPT__(,) __VA_ARGS__))
 
-struct NameFuncPair {
+struct va_list_ex {
+    va_list *valist;
+    const void* origin;
+};
+
+struct name_func_pair {
     char * name;
     void * func;
 };
 
+struct va_list_ex make_va_list_ex(va_list* val);
+
+void va_reset(struct va_list_ex* val);
+
+#define va_arg_ex(va,Type) va_arg(*((va).valist),Type)
 
 void add_unimplemented_function(void* src_class, void* dst_class);
 
