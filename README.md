@@ -5,8 +5,6 @@ Support:  Encapsulation, Inheritance, Polymorphism.
 
 Super light library with only ~240 loc ( 170 lines of none blank codes).
 
-Take care of that: compilers must support `__VA_OPT__`. Using the latest `GCC` is a good choice.
-
 Demo:
 ```C
 #include <stdio.h>
