@@ -49,7 +49,18 @@
     }
 
 
+#define PP_THIRD_ARG(a,b,c,...) c
+#define VA_OPT_SUPPORTED_I(...) PP_THIRD_ARG(__VA_OPT__(,),1,0,)
+#define VA_OPT_SUPPORTED VA_OPT_SUPPORTED_I(?)
+
+
+#if VA_OPT_SUPPORTED
 #define invoke(self,func,...) (object_class(self)->func(self __VA_OPT__(,) __VA_ARGS__))
+#elif defined(_MSC_VER)
+#define invoke(self,func,...) (object_class(self)->func(self, __VA_ARGS__))
+#else
+#define invoke(self,func,...) (object_class(self)->func(self,##__VA_ARGS__))
+#endif
 
 struct va_list_ex {
     va_list *valist;
