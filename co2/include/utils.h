@@ -62,6 +62,8 @@
 #define invoke(self,func,...) (object_class(self)->func(self,##__VA_ARGS__))
 #endif
 
+#define $ invoke
+
 struct va_list_ex {
     va_list *valist;
     void* origin;
