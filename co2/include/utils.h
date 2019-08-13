@@ -64,7 +64,7 @@
 
 struct va_list_ex {
     va_list *valist;
-    const void* origin;
+    void* origin;
 };
 
 struct name_func_pair {
